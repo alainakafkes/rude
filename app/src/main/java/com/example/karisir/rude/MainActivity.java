@@ -34,9 +34,9 @@ public class MainActivity extends Activity {
                                          boolean isChecked) {
 
                 if (isChecked) {
-                    switchStatus.setText("Switch is currently ON");
+                    switchStatus.setText("Switch is currently SOCIAL");
                 } else {
-                    switchStatus.setText("Switch is currently OFF");
+                    switchStatus.setText("Switch is currently ANTISOCIAL");
                 }
 
             }
@@ -44,9 +44,9 @@ public class MainActivity extends Activity {
 
         //check the current state before we display the screen
         if (mySwitch.isChecked()) {
-            switchStatus.setText("Switch is currently ON");
+            switchStatus.setText("Switch is currently SOCIAL");
         } else {
-            switchStatus.setText("Switch is currently OFF");
+            switchStatus.setText("Switch is currently ANTISOCIAL");
         }
     }
 
