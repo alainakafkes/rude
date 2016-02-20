@@ -83,5 +83,17 @@ public class FacebookLogin extends ActionBarActivity {
     {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+
+        try {
+            Intent in = new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
+        catch (Exception e){
+            Log.i("tag","Failed to launch Settings Activity " + e.getMessage());
+        }
     }
-}
+
+        }
+
+
