@@ -15,6 +15,10 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Switch;
+
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -30,9 +34,52 @@ public class MainActivity extends Activity {
     private int mProgressStatus = 0;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-
+    private TextView switchStatus;
+    private Switch mySwitch;
 
     private Handler mHandler = new Handler();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        switchStatus = (TextView) findViewById(R.id.switchStatus);
+        mySwitch = (Switch) findViewById(R.id.mySwitch);
+
+        //set the switch to ON
+        mySwitch.setChecked(true);
+        //attach a listener to check for changes in state
+        mySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+
+                if(isChecked){
+                    switchStatus.setText("Be social.  Go wild.");
+                }else{
+                    switchStatus.setText("Rude! Why are you looking at me?");
+                }
+
+            }
+        });
+
+        //check the current state before we display the screen
+        if(mySwitch.isChecked()){
+            switchStatus.setText("Be social.  Go wild.");
+        }
+        else {
+            switchStatus.setText("Rude! Why are you looking at me?");
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
