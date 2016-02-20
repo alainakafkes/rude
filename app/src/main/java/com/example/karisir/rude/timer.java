@@ -67,7 +67,6 @@ public class Social extends Activity implements OnClickListener
         public void onFinish()
         {
             text.setText("Time's up!");
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(startTime));
         }
 
         @Override
@@ -75,7 +74,6 @@ public class Social extends Activity implements OnClickListener
         {
             text.setText("Time remain:" + millisUntilFinished);
             timeElapsed = startTime - millisUntilFinished;
-            timeElapsedView.setText("Time Elapsed: " + String.valueOf(timeElapsed));
         }
     }
 }
