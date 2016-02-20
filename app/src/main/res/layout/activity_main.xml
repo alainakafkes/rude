@@ -71,7 +71,8 @@
         android:layout_alignLeft="@+id/mySwitch"
         android:layout_alignStart="@+id/mySwitch"
         android:layout_marginTop="55dp"
-        android:textIsSelectable="false" />
+        android:textIsSelectable="false"
+        android:typeface="serif" />
 
 
 </RelativeLayout>

@@ -29,7 +29,8 @@
         android:textIsSelectable="false"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/login_button"
-        android:layout_alignStart="@+id/login_button" />
+        android:layout_alignStart="@+id/login_button"
+        android:typeface="serif" />
 
     <TextView
         android:layout_width="250dp"
@@ -44,6 +45,6 @@
         android:layout_marginTop="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
-/>
+        android:typeface="normal" />
 
 </RelativeLayout>
