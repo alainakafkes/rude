@@ -3,13 +3,16 @@ package com.example.karisir.rude;
 import java.util.Arrays;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -19,17 +22,45 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+public class MainActivity extends Activity {
 
-public class MainActivity extends FragmentActivity {
+    private static final int PROGRESS = 0x1;
+
+    private ProgressBar mProgress;
+    private int mProgressStatus = 0;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
 
 
-    public class FacebookLogin extends ActionBarActivity {
-        private LoginButton loginButton;
-        private CallbackManager callbackManager;
-        @Override
-        protected void onCreate(Bundle savedInstanceState)
-        {
-            super.onCreate(savedInstanceState);
+    private Handler mHandler = new Handler();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //progress bar
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
+
+        // Start lengthy operation in a background thread
+        new Thread(new Runnable() {
+            public void run() {
+                while (mProgressStatus < 100) {
+                   // mProgressStatus = doWork();
+
+                    // Update the progress bar
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            mProgress.setProgress(mProgressStatus);
+                        }
+                    });
+                }
+            }
+        }).start();
+
+
+           //facebook integration
             FacebookSdk.sdkInitialize(this.getApplicationContext());
             //setContentView(R.layout.activity_login);
             callbackManager = CallbackManager.Factory.create();
@@ -88,4 +119,3 @@ public class MainActivity extends FragmentActivity {
     }
 
     }
-}

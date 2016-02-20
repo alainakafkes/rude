@@ -47,7 +47,8 @@
         android:indeterminate="false"
         android:progress="50"
         android:progressBackgroundTint="#64e6d7"
-        android:progressTint="#db5656" />
+        android:progressTint="#db5656"
+        android:id="@+id/progressBar" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,7 +71,8 @@
         android:layout_alignLeft="@+id/mySwitch"
         android:layout_alignStart="@+id/mySwitch"
         android:layout_marginTop="55dp"
-        android:textIsSelectable="false" />
+        android:textIsSelectable="false"
+        android:typeface="serif" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
