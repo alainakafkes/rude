@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 import com.facebook.FacebookSdk;
 
 public class MainActivity extends Activity {
@@ -38,11 +39,22 @@ public class MainActivity extends Activity {
             }
         }).start();
     }
+=======
 
+public class MainActivity extends ActionBarActivity {
+>>>>>>> origin/master
+
+    private boolean loggedin = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loggedin = getIntent().getExtras().getBoolean("loggedin");
+        if(!loggedin) {
+            Intent in = new Intent(this, FacebookLogin.class);
+            startActivity(in);
+        }
+
     }
 
     @Override
