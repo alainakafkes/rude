@@ -142,7 +142,6 @@ public class MainActivity extends Activity {
                     Log.v("LoginActivity", exception.getCause().toString());
                 }
             });
-        }
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             // Inflate the menu; this adds items to the action bar if it is present.
@@ -170,6 +169,4 @@ public class MainActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-
     }
