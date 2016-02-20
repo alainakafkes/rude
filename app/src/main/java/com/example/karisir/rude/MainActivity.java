@@ -58,11 +58,9 @@ public class MainActivity extends Activity {
                 }
             }
         }).start();
-<<<<<<< HEAD
+
     }
 
-=======
->>>>>>> origin/master
 
 
            //facebook integration
@@ -115,6 +113,57 @@ public class MainActivity extends Activity {
             return super.onOptionsItemSelected(item);
         }
 
+
+
+           //facebook integration
+            FacebookSdk.sdkInitialize(this.getApplicationContext());
+            //setContentView(R.layout.activity_login);
+            callbackManager = CallbackManager.Factory.create();
+            loginButton = (LoginButton) findViewById(R.id.login_button);
+            List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
+            loginButton.setReadPermissions(permissionNeeds);
+            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
+            {
+                @Override
+                public void onSuccess(LoginResult loginResult)
+                {
+                    System.out.println("onSuccess");
+                }
+
+                @Override
+                public void onCancel()
+                {
+                    System.out.println("onCancel");
+                }
+
+                @Override
+                public void onError(FacebookException exception)
+                {
+                    Log.v("LoginActivity", exception.getCause().toString());
+                }
+            });
+        }
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_facebook_login, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
 
 
     @Override
