@@ -86,7 +86,7 @@ public class FacebookLogin extends ActionBarActivity {
 
 
         try {
-            Intent in = new Intent(this,MainActivity.class);
+            Intent in = new Intent(this, MainActivity.class);
             in.putExtra("loggedin", true);
             startActivity(in);
         }
