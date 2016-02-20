@@ -15,7 +15,6 @@
         android:backgroundTint="#FFFFFF"
         android:background="#FFFFFF"
         android:clickable="true"
-        android:contextClickable="true"
         android:enabled="true"
         android:padding="15dp"
         android:showText="true"
