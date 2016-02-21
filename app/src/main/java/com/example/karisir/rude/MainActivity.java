@@ -10,10 +10,12 @@ import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,7 +41,7 @@ import android.view.MotionEvent;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity{
 
     private static final int PROGRESS = 0x1;
 
@@ -50,6 +52,7 @@ public class MainActivity extends ActionBarActivity {
 
     private TextView switchStatus;
     private Switch mySwitch;
+
 
 
 
@@ -67,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
         mySwitch = (Switch) findViewById(R.id.mySwitch);
 
         //set the switch to ON
-        mySwitch.setChecked(true);
+        mySwitch.setChecked(false);
         //attach a listener to check for changes in state
         mySwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -75,52 +78,66 @@ public class MainActivity extends ActionBarActivity {
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
 
-                if(isChecked){
-                    switchStatus.setText("Be social.  Go wild.");
-                }else{
+                if (isChecked) {
+                    switchStatus.setText("Be social. Go wild.");
+                    setContentView(R.layout.activity_social);
+                } else {
                     switchStatus.setText("Rude! Why are you looking at me?");
+                    setContentView(R.layout.activity_main);
                 }
 
             }
         });
+        Button rewards_button = (Button) findViewById(R.id.rewards_button);
 
-        //check the current state before we display the screen
-        if(mySwitch.isChecked()){
-            switchStatus.setText("Be social.  Go wild.");
-        }
-        else {
-            switchStatus.setText("Rude! Why are you looking at me?");
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.custom_toast,
-                    (ViewGroup) findViewById(R.id.toast_layout_root));
+        OnClickListener handler = new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, RewardsEarned.class);
+                startActivity(intent);
 
-            TextView text = (TextView) layout.findViewById(R.id.text);
-            text.setText("This is a custom toast");
-
-            Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setView(layout);
-            toast.show();
-        }
-
-        mProgress = (ProgressBar) findViewById(R.id.progressBar);
-
-        // Start lengthy operation in a background thread
-        new Thread(new Runnable() {
-            public void run() {
-                while (mProgressStatus < 100) {
-                    // mProgressStatus = doWork();
-
-                    // Update the progress bar
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            mProgress.setProgress(mProgressStatus);
-                        }
-                    });
-                }
             }
-        }).start();
+        };
+        rewards_button.setOnClickListener(handler);
+
+//        //check the current state before we display the screen
+//        if(mySwitch.isChecked()){
+//            switchStatus.setText("Be social.  Go wild.");
+//        }
+//        else {
+//            switchStatus.setText("Rude! Why are you looking at me?");
+//            LayoutInflater inflater = getLayoutInflater();
+//            View layout = inflater.inflate(R.layout.custom_toast,
+//                    (ViewGroup) findViewById(R.id.toast_layout_root));
+//
+//            TextView text = (TextView) layout.findViewById(R.id.text);
+//            text.setText("This is a custom toast");
+//
+//            Toast toast = new Toast(getApplicationContext());
+//            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+//            toast.setDuration(Toast.LENGTH_LONG);
+//            toast.setView(layout);
+//            toast.show();
+//        }
+//
+//        mProgress = (ProgressBar) findViewById(R.id.progressBar);
+//
+//        // Start lengthy operation in a background thread
+//        new Thread(new Runnable() {
+//            public void run() {
+//                while (mProgressStatus < 100) {
+//                    // mProgressStatus = doWork();
+//
+//                    // Update the progress bar
+//                    mHandler.post(new Runnable() {
+//                        public void run() {
+//                            mProgress.setProgress(mProgressStatus);
+//                        }
+//                    });
+//                }
+//            }
+//        }).start();
+
 
 
         //facebook integration
@@ -149,38 +166,48 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
-        int X = (int) event.getX();
-        int Y = (int) event.getY();
-
-        int eventaction = event.getAction();
-
-        switch (eventaction) {
-
-            case MotionEvent.ACTION_DOWN:
-
-                Toast.makeText(this, "ACTION_DOWN AT COORDS "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
-
-                isTouch = true;
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-
-                Toast.makeText(this, "MOVE "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
-
-                break;
-
-            case MotionEvent.ACTION_UP:
-
-                Toast.makeText(this, "ACTION_UP "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
-
-                break;
-
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            String text = "You click at x = " + event.getX() + " and y = " + event.getY();
+            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
         }
 
-        return true;
-
+        return super.onTouchEvent(event);
     }
+
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//
+//        int X = (int) event.getX();
+//        int Y = (int) event.getY();
+//
+//        int eventaction = event.getAction();
+//
+//        switch (eventaction) {
+//
+//            case MotionEvent.ACTION_DOWN:
+//
+//                //Toast.makeText(this, "ACTION_DOWN AT COORDS "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "this!", Toast.LENGTH_LONG).show();
+//                isTouch = true;
+//                break;
+//
+//            case MotionEvent.ACTION_MOVE:
+//
+//                Toast.makeText(this, "MOVE "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+//
+//                break;
+//
+//            case MotionEvent.ACTION_UP:
+//
+//                Toast.makeText(this, "ACTION_UP "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+//
+//                break;
+//
+//        }
+//
+//        return true;
+//
+//    }
 
 
     @Override
@@ -212,4 +239,14 @@ public class MainActivity extends ActionBarActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+
+
+
+
+
+
+
+
 }

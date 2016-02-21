@@ -57,7 +57,9 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="46dp"
         android:id="@+id/tableRow"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     </TableRow>
 

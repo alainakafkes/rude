@@ -1,10 +1,12 @@
 package com.example.karisir.rude;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -39,14 +41,16 @@ public class RewardsEarned extends AppCompatActivity {
         setContentView(R.layout.activity_rewards);
 
         rewards = (ListView) findViewById(R.id.rewards_list);
-        listAdapter = ArrayAdapter.createFromResource(this, R.array.rewards_earned, android.R.layout.activity_list_item);
+        listAdapter = ArrayAdapter.createFromResource(this, R.array.rewards_earned, android.R.layout.simple_list_item_1);
         rewards.setAdapter(listAdapter);
 
         rewards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(RewardsEarned.this, i, Toast.LENGTH_LONG).show();
-                initiatePopup(i);
+
+                Intent intent = new Intent(RewardsEarned.this, RedeemReward.class);
+                intent.putExtra("which reward", i);
+                startActivity(intent);
 
 
 
@@ -56,23 +60,24 @@ public class RewardsEarned extends AppCompatActivity {
         });
     }
 
-    private void initiatePopup(int reward_num){
-        ImageView reward_image = (ImageView) findViewById(R.id.reward_image);
-        TextView reward_title = (TextView) findViewById(R.id.reward_title);
-        TextView reward_details = (TextView) findViewById(R.id.reward_details);
-        String[] reward_title_array = getResources().getStringArray(R.array.rewards_earned);
-        String[] reward_details_array = getResources().getStringArray(R.array.rewards_details);
-
-//        reward_title_text = reward_title_array[reward_num];
-        reward_title.setText(reward_title_array[reward_num]);
-        reward_details.setText(reward_details_array[reward_num]);
-//        reward_image.setImageResource(R.id.reward_title_text);
-
-
-        LayoutInflater popupInflater = (LayoutInflater) RewardsEarned.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View Popup = popupInflater.inflate(R.layout.popup, (ViewGroup)findViewById(R.id.popup_layout));
-        pwindo = new PopupWindow(Popup, 300, 370, true);
-        pwindo.showAtLocation(Popup, Gravity.CENTER, 0, 0);
-
-    }
+//    private void initiatePopup(int reward_num){
+//        Toast.makeText(RewardsEarned.this, "this!", Toast.LENGTH_LONG).show();
+//        ImageView reward_image = (ImageView) findViewById(R.id.reward_image);
+//        TextView reward_title = (TextView) findViewById(R.id.reward_title);
+//        TextView reward_details = (TextView) findViewById(R.id.reward_details);
+//        String[] reward_title_array = getResources().getStringArray(R.array.rewards_earned);
+//        String[] reward_details_array = getResources().getStringArray(R.array.rewards_details);
+//
+////        reward_title_text = reward_title_array[reward_num];
+//        reward_title.setText(reward_title_array[reward_num]);
+//        reward_details.setText(reward_details_array[reward_num]);
+////        reward_image.setImageResource(R.id.reward_title_text);
+//
+//
+//        LayoutInflater popupInflater = (LayoutInflater) RewardsEarned.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View Popup = popupInflater.inflate(R.layout.popup, (ViewGroup)findViewById(R.id.popup_layout));
+//        pwindo = new PopupWindow(Popup, 300, 370, true);
+//        pwindo.showAtLocation(Popup, Gravity.CENTER, 0, 0);
+//
+//    }
 }

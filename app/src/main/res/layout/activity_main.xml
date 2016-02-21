@@ -29,7 +29,7 @@
         android:id="@+id/switchStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:layout_below="@+id/mySwitch"
         android:layout_marginTop="22dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -73,6 +73,8 @@
         android:textIsSelectable="false"
         android:typeface="serif" />
 
+
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
@@ -81,6 +83,27 @@
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rewards"
+        android:id="@+id/rewards_button"
+        android:layout_above="@+id/login_button"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:textSize="50dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:id="@+id/my_points"
+        android:layout_below="@+id/mySwitch"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
