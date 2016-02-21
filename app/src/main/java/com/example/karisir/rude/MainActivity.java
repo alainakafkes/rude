@@ -16,26 +16,22 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-<<<<<<< HEAD
+
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 
-=======
->>>>>>> origin/master
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-<<<<<<< HEAD
-=======
+
 
 import android.view.MotionEvent;
 import android.widget.Toast;
 
->>>>>>> origin/master
 
 public class MainActivity extends ActionBarActivity {
 
@@ -45,19 +41,18 @@ public class MainActivity extends ActionBarActivity {
     private int mProgressStatus = 0;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
-<<<<<<< HEAD
+
     private TextView switchStatus;
     private Switch mySwitch;
 
     private Handler mHandler = new Handler();
-=======
+
 
 
     private Handler mHandler = new Handler();
 
 
     private boolean isTouch = false; // touch screen detection
->>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +61,7 @@ public class MainActivity extends ActionBarActivity {
         FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         switchStatus = (TextView) findViewById(R.id.switchStatus);
         mySwitch = (Switch) findViewById(R.id.mySwitch);
 
@@ -96,11 +90,8 @@ public class MainActivity extends ActionBarActivity {
         else {
             switchStatus.setText("Rude! Why are you looking at me?");
         }
-=======
-        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
-=======
+
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
->>>>>>> origin/master
 
         // Start lengthy operation in a background thread
         new Thread(new Runnable() {
@@ -140,7 +131,6 @@ public class MainActivity extends ActionBarActivity {
                 Log.v("LoginActivity", exception.getCause().toString());
             }
         });
->>>>>>> origin/master
     }
 
 
@@ -183,7 +173,6 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-<<<<<<< HEAD
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
@@ -242,8 +231,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-=======
->>>>>>> origin/master
+
         getMenuInflater().inflate(R.menu.menu_facebook_login, menu);
         return true;
     }
