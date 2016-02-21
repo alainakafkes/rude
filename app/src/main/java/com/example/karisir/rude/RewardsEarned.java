@@ -47,10 +47,10 @@ public class RewardsEarned extends AppCompatActivity {
         rewards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Intent intent = new Intent(RewardsEarned.this, RedeemReward.class);
-                intent.putExtra("which reward", i);
-                startActivity(intent);
+                Toast.makeText(RewardsEarned.this, "Redeemed!", Toast.LENGTH_LONG).show();
+//                Intent intent = new Intent(RewardsEarned.this, RedeemReward.class);
+//                intent.putExtra("which reward", i);
+//                startActivity(intent);
 
 
 

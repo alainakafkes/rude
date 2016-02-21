@@ -164,15 +164,7 @@ public class MainActivity extends ActionBarActivity{
     }
 
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
-            String text = "You click at x = " + event.getX() + " and y = " + event.getY();
-            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-        }
 
-        return super.onTouchEvent(event);
-    }
 
 //    @Override
 //    public boolean onTouchEvent(MotionEvent event) {
