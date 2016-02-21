@@ -22,6 +22,10 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import android.view.MotionEvent;
+import android.widget.Toast;
+
+
 public class MainActivity extends Activity {
 
     private static final int PROGRESS = 0x1;
@@ -33,6 +37,9 @@ public class MainActivity extends Activity {
 
 
     private Handler mHandler = new Handler();
+
+
+    private boolean isTouch = false; // touch screen detection
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,7 @@ public class MainActivity extends Activity {
         new Thread(new Runnable() {
             public void run() {
                 while (mProgressStatus < 100) {
-                   // mProgressStatus = doWork();
+                    // mProgressStatus = doWork();
 
                     // Update the progress bar
                     mHandler.post(new Runnable() {
@@ -59,110 +66,90 @@ public class MainActivity extends Activity {
             }
         }).start();
 
+
+        //facebook integration
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        //setContentView(R.layout.activity_login);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
+        loginButton.setReadPermissions(permissionNeeds);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                System.out.println("onSuccess");
+            }
+
+            @Override
+            public void onCancel() {
+                System.out.println("onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Log.v("LoginActivity", exception.getCause().toString());
+            }
+        });
     }
 
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
 
-           //facebook integration
-            FacebookSdk.sdkInitialize(this.getApplicationContext());
-            //setContentView(R.layout.activity_login);
-            callbackManager = CallbackManager.Factory.create();
-            loginButton = (LoginButton) findViewById(R.id.login_button);
-            List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
-            loginButton.setReadPermissions(permissionNeeds);
-            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
-            {
-                @Override
-                public void onSuccess(LoginResult loginResult)
-                {
-                    System.out.println("onSuccess");
-                }
+        int X = (int) event.getX();
+        int Y = (int) event.getY();
 
-                @Override
-                public void onCancel()
-                {
-                    System.out.println("onCancel");
-                }
+        int eventaction = event.getAction();
 
-                @Override
-                public void onError(FacebookException exception)
-                {
-                    Log.v("LoginActivity", exception.getCause().toString());
-                }
-            });
+        switch (eventaction) {
+
+            case MotionEvent.ACTION_DOWN:
+
+                Toast.makeText(this, "ACTION_DOWN AT COORDS "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+
+                isTouch = true;
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+
+                Toast.makeText(this, "MOVE "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case MotionEvent.ACTION_UP:
+
+                Toast.makeText(this, "ACTION_UP "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+
+                break;
+
         }
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_facebook_login, menu);
+
+        return true;
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_facebook_login, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
             return true;
         }
 
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
-            int id = item.getItemId();
-
-            //noinspection SimplifiableIfStatement
-            if (id == R.id.action_settings) {
-                return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
-
-
-
-           //facebook integration
-            FacebookSdk.sdkInitialize(this.getApplicationContext());
-            //setContentView(R.layout.activity_login);
-            callbackManager = CallbackManager.Factory.create();
-            loginButton = (LoginButton) findViewById(R.id.login_button);
-            List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
-            loginButton.setReadPermissions(permissionNeeds);
-            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
-            {
-                @Override
-                public void onSuccess(LoginResult loginResult)
-                {
-                    System.out.println("onSuccess");
-                }
-
-                @Override
-                public void onCancel()
-                {
-                    System.out.println("onCancel");
-                }
-
-                @Override
-                public void onError(FacebookException exception)
-                {
-                    Log.v("LoginActivity", exception.getCause().toString());
-                }
-            });
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_facebook_login, menu);
-            return true;
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
-            int id = item.getItemId();
-
-            //noinspection SimplifiableIfStatement
-            if (id == R.id.action_settings) {
-                return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override
@@ -170,3 +157,4 @@ public class MainActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+}
