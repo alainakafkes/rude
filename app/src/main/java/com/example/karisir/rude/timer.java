@@ -1,4 +1,3 @@
-package com.example.karisir.rude
 package com.example.karisir.rude;
 
 import android.app.Activity;
@@ -9,9 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Social extends Activity implements OnClickListener
 
-// Had to rename Social to timer – public class name must match [insertname].java
 public class timer extends Activity implements OnClickListener
 {
     private static final String tag = "Main";
