@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 package com.example.karisir.rude
-=======
 package com.example.karisir.rude;
->>>>>>> origin/master
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,13 +9,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-<<<<<<< HEAD
 public class Social extends Activity implements OnClickListener
-=======
 
 // Had to rename Social to timer – public class name must match [insertname].java
 public class timer extends Activity implements OnClickListener
->>>>>>> origin/master
 {
     private static final String tag = "Main";
     private MalibuCountDownTimer countDownTimer;
@@ -36,11 +30,8 @@ public class timer extends Activity implements OnClickListener
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.main);
-=======
         setContentView(R.layout.activity_main);
->>>>>>> origin/master
         startB = (Button) this.findViewById(R.id.button);
         startB.setOnClickListener(this);
 
@@ -81,10 +72,7 @@ public class timer extends Activity implements OnClickListener
         public void onFinish()
         {
             text.setText("Time's up!");
-<<<<<<< HEAD
-=======
             timeElapsedView.setText("Time Elapsed: " + String.valueOf(startTime));
->>>>>>> origin/master
         }
 
         @Override
@@ -92,10 +80,7 @@ public class timer extends Activity implements OnClickListener
         {
             text.setText("Time remain:" + millisUntilFinished);
             timeElapsed = startTime - millisUntilFinished;
-<<<<<<< HEAD
-=======
             timeElapsedView.setText("Time Elapsed: " + String.valueOf(timeElapsed));
->>>>>>> origin/master
         }
     }
 }
