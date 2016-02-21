@@ -8,10 +8,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
 public class timer extends Activity implements OnClickListener
 {
