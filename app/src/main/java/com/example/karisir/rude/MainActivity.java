@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ import android.view.MotionEvent;
 import android.widget.Toast;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     private static final int PROGRESS = 0x1;
 
@@ -45,10 +46,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         //progress bar
         super.onCreate(savedInstanceState);
-
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
         setContentView(R.layout.activity_main);
 
-        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgress = (ProgressBar) findViewById(R.id.progressBar);
 
         // Start lengthy operation in a background thread
         new Thread(new Runnable() {
@@ -68,8 +69,6 @@ public class MainActivity extends Activity {
 
 
         //facebook integration
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        //setContentView(R.layout.activity_login);
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
