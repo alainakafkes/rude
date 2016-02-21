@@ -15,16 +15,26 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+<<<<<<< HEAD
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 
+=======
+>>>>>>> origin/master
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+<<<<<<< HEAD
+=======
+
+import android.view.MotionEvent;
+import android.widget.Toast;
+
+>>>>>>> origin/master
 
 public class MainActivity extends Activity {
 
@@ -34,16 +44,28 @@ public class MainActivity extends Activity {
     private int mProgressStatus = 0;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+<<<<<<< HEAD
     private TextView switchStatus;
     private Switch mySwitch;
 
     private Handler mHandler = new Handler();
+=======
+
+
+    private Handler mHandler = new Handler();
+
+
+    private boolean isTouch = false; // touch screen detection
+>>>>>>> origin/master
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //progress bar
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         switchStatus = (TextView) findViewById(R.id.switchStatus);
         mySwitch = (Switch) findViewById(R.id.mySwitch);
 
@@ -72,11 +94,93 @@ public class MainActivity extends Activity {
         else {
             switchStatus.setText("Rude! Why are you looking at me?");
         }
+=======
+        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
+
+        // Start lengthy operation in a background thread
+        new Thread(new Runnable() {
+            public void run() {
+                while (mProgressStatus < 100) {
+                    // mProgressStatus = doWork();
+
+                    // Update the progress bar
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            mProgress.setProgress(mProgressStatus);
+                        }
+                    });
+                }
+            }
+        }).start();
+
+
+        //facebook integration
+        FacebookSdk.sdkInitialize(this.getApplicationContext());
+        //setContentView(R.layout.activity_login);
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
+        loginButton.setReadPermissions(permissionNeeds);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                System.out.println("onSuccess");
+            }
+
+            @Override
+            public void onCancel() {
+                System.out.println("onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                Log.v("LoginActivity", exception.getCause().toString());
+            }
+        });
+>>>>>>> origin/master
     }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        int X = (int) event.getX();
+        int Y = (int) event.getY();
+
+        int eventaction = event.getAction();
+
+        switch (eventaction) {
+
+            case MotionEvent.ACTION_DOWN:
+
+                Toast.makeText(this, "ACTION_DOWN AT COORDS "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+
+                isTouch = true;
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+
+                Toast.makeText(this, "MOVE "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+
+                break;
+
+            case MotionEvent.ACTION_UP:
+
+                Toast.makeText(this, "ACTION_UP "+"X: "+X+" Y: "+Y, Toast.LENGTH_SHORT).show();
+
+                break;
+
+        }
+
+        return true;
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+<<<<<<< HEAD
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
@@ -135,6 +239,8 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+=======
+>>>>>>> origin/master
         getMenuInflater().inflate(R.menu.menu_facebook_login, menu);
         return true;
     }
