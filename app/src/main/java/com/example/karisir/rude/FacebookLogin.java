@@ -22,6 +22,7 @@ import java.util.List;
 
 
 public class FacebookLogin extends ActionBarActivity {
+
     private LoginButton loginButton;
     private CallbackManager callbackManager;
     @Override
@@ -29,7 +30,7 @@ public class FacebookLogin extends ActionBarActivity {
     {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(this.getApplicationContext());
-        //setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_facebook_login);
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
