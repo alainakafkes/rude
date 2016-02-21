@@ -3,6 +3,7 @@ package com.example.karisir.rude;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.util.DisplayMetrics;
@@ -13,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -28,6 +30,7 @@ public class SocialMode extends Activity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_social);
+        final TextView time_text = (TextView) findViewById(R.id.timer);
         mySwitch = (Switch) findViewById(R.id.mySwitch);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -64,9 +67,18 @@ public class SocialMode extends Activity{
         View.OnClickListener handler = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SocialMode.this, timer.class);
-                startActivity(intent);
+//                Intent intent = new Intent(SocialMode.this, timer.class);
+//                startActivity(intent);
+                new CountDownTimer(30000, 1000) {
 
+                    public void onTick(long millisUntilFinished) {
+                        time_text.setText("seconds remaining: " + millisUntilFinished / 1000);
+                    }
+
+                    public void onFinish() {
+                        time_text.setText("done!");
+                    }
+                }.start();
             }
         };
         start_button.setOnClickListener(handler);
