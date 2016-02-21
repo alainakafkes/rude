@@ -51,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
     private TextView switchStatus;
     private Switch mySwitch;
 
-    private Handler mHandler = new Handler();
 
 
     private boolean isTouch = false; // touch screen detection
@@ -183,64 +182,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        //progress bar
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
-        mProgress = (ProgressBar) findViewById(R.id.progress_bar);
-
-        // Start lengthy operation in a background thread
-        new Thread(new Runnable() {
-            public void run() {
-                while (mProgressStatus < 100) {
-                    // mProgressStatus = doWork();
-
-                    // Update the progress bar
-                    mHandler.post(new Runnable() {
-                        public void run() {
-                            mProgress.setProgress(mProgressStatus);
-                        }
-                    });
-                }
-            }
-        }).start();
-
-
-        //facebook integration
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
-        //setContentView(R.layout.activity_login);
-        callbackManager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        List<String> permissionNeeds = Arrays.asList("user_photos", "email", "user_birthday", "public_profile");
-        loginButton.setReadPermissions(permissionNeeds);
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                System.out.println("onSuccess");
-            }
-
-            @Override
-            public void onCancel() {
-                System.out.println("onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                Log.v("LoginActivity", exception.getCause().toString());
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

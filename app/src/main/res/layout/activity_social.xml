@@ -89,4 +89,4 @@
         android:typeface="serif"
         android:textSize="30dp" />
 
-</LinearLayout>
+</RelativeLayout>

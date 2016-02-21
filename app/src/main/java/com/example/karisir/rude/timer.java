@@ -32,7 +32,7 @@ public class timer extends Activity implements OnClickListener
         startB.setOnClickListener(this);
 
         text = (TextView) this.findViewById(R.id.timer);
-        timeElapsedView = (TextView) this.findViewById(R.id.timeElapsed);
+//        timeElapsedView = (TextView) this.findViewById(R.id.timeElapsed);
         countDownTimer = new MalibuCountDownTimer(startTime, interval);
         text.setText(text.getText() + String.valueOf(startTime));
     }
