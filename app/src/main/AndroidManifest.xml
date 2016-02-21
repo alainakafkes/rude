@@ -31,9 +31,14 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".SocialMode"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".FacebookLogin"
             android:label="@string/title_activity_facebook_login" >
         </activity>
+
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"

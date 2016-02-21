@@ -80,10 +80,10 @@ public class MainActivity extends ActionBarActivity{
 
                 if (isChecked) {
                     switchStatus.setText("Be social. Go wild.");
-                    setContentView(R.layout.activity_social);
+                    Intent intent = new Intent(MainActivity.this, SocialMode.class);
+                    startActivity(intent);
                 } else {
                     switchStatus.setText("Rude! Why are you looking at me?");
-                    setContentView(R.layout.activity_main);
                 }
 
             }
