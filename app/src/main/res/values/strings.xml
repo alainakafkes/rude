@@ -1,18 +1,26 @@
 <resources>
     <string name="app_name">Rude!</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="facebook_app_id">471036786425788</string>
     <string name="title_activity_facebook_login">FacebookLogin</string>
 
     <string-array name="rewards_earned">
-        <item>first</item>
-        <item>second</item>
+        <item>A high-five (10 points)</item>
+        <item>A free hug (20 points)</item>
+        <item>Insomnia cookies (100 points)</item>
+        <item>A raspberry pie (200 points</item>
+        <item>Insomnia cookies with ice cream (300 points)</item>
+        <item>A free trip to Mars (1000000 points)</item>
     </string-array>
 
     <string-array name="rewards_details">
-        <item>you get some smores</item>
-        <item>cookies</item>
+        <item>10 points for a quality high-five</item>
+        <item>20 points for a friendly bear hug</item>
+        <item>100 points for the best cookies ever to eat with friends</item>
+        <item>200 points for an edible raspberry pie to share with friends</item>
+        <item>300 points for cookies and also, ice cream</item>
+
+        <item>1000000 points to explore space with friends</item>
     </string-array>
 
 

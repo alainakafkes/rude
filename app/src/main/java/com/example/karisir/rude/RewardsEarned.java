@@ -2,6 +2,7 @@ package com.example.karisir.rude;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -24,12 +25,15 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 /**
  * Created by vickieli on 2/20/16.
  */
 public class RewardsEarned extends AppCompatActivity {
 
-
+//    Resources res = getResources();
+//    String[] reward_details = res.getStringArray(R.array.rewards_details);
     ListView rewards;
     private PopupWindow pwindo;
     private ArrayAdapter<CharSequence> listAdapter;
@@ -41,16 +45,15 @@ public class RewardsEarned extends AppCompatActivity {
         setContentView(R.layout.activity_rewards);
 
         rewards = (ListView) findViewById(R.id.rewards_list);
+
         listAdapter = ArrayAdapter.createFromResource(this, R.array.rewards_earned, android.R.layout.simple_list_item_1);
         rewards.setAdapter(listAdapter);
 
         rewards.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(RewardsEarned.this, "Redeemed!", Toast.LENGTH_LONG).show();
-//                Intent intent = new Intent(RewardsEarned.this, RedeemReward.class);
-//                intent.putExtra("which reward", i);
-//                startActivity(intent);
+                Toast.makeText(RewardsEarned.this, "Redeemed this award!", Toast.LENGTH_LONG).show();
+//
 
 
 

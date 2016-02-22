@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity{
 
     private static final int PROGRESS = 0x1;
 
+
     private ProgressBar mProgress;
     private int mProgressStatus = 0;
     private LoginButton loginButton;
@@ -68,6 +69,7 @@ public class MainActivity extends ActionBarActivity{
 
         switchStatus = (TextView) findViewById(R.id.switchStatus);
         mySwitch = (Switch) findViewById(R.id.mySwitch);
+
 
         //set the switch to ON
         mySwitch.setChecked(false);

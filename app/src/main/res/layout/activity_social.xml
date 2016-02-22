@@ -92,4 +92,15 @@
         android:typeface="serif"
         android:textSize="30dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="100"
+        android:textColor="#ffffff"
+        android:textSize="50dp"
+        android:id="@+id/score"
+        android:layout_alignTop="@+id/switchStatus"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

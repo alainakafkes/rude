@@ -17,6 +17,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 
 /**
  * Created by vickieli on 2/21/16.
@@ -49,7 +51,7 @@ public class SocialMode extends Activity{
         });
 
 
-
+        final TextView score = (TextView) findViewById(R.id.score);
         RelativeLayout screen = (RelativeLayout) findViewById(R.id.social_screen);
         screen.setOnTouchListener(new View.OnTouchListener() {
 
@@ -57,7 +59,10 @@ public class SocialMode extends Activity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Toast.makeText(SocialMode.this, "touched screen!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SocialMode.this, "Stop touching me!", Toast.LENGTH_LONG).show();
+                    int curr_score = Integer.parseInt(score.getText().toString());
+                    int now_score = curr_score - 10;
+                    score.setText(String.valueOf(now_score));
                 }
                 return false;
             }
@@ -77,6 +82,10 @@ public class SocialMode extends Activity{
 
                     public void onFinish() {
                         time_text.setText("done!");
+                        int curr_score = Integer.parseInt(score.getText().toString());
+                        int now_score = curr_score + 10;
+                        score.setText(String.valueOf(now_score));
+
                     }
                 }.start();
             }
