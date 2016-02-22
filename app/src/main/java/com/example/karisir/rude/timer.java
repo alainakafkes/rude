@@ -65,7 +65,7 @@ public class timer extends Activity
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Toast.makeText(timer.this, "touched screen!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(timer.this, "Stop touching me! Go talk to your friends!", Toast.LENGTH_LONG).show();
                 }
                 return false;
             }
